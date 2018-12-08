@@ -1,5 +1,5 @@
-from G1 import *
 from collections import defaultdict
+from G1 import *
 #
 # def test_train_0():
 #     assert train(1,[[[[0, 0, 0, 1, 0, 0, 2, 0, 0], 6]],\
@@ -26,3 +26,11 @@ def test_create_move_score_list():
     assert create_move_score_list(examp_model,[0,1]) == [["move1",1],["move2",2]]
 def test_create_move_score_list1():
     assert create_move_score_list(examp_model,[1,2]) == [["move1",4],["move2",0.25]]
+
+'''
+model = defaultdict(lambda: defaultdict(lambda: [0,0]))
+model[1][1][1] =+ 1
+print(model)
+new_model = _defaultdict_to_dict(model)
+'''
+print("result of the switch: "+str(zero_player_in_games_state([1,2,0,2,2,2,2,1,4,5],1)))

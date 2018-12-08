@@ -12,7 +12,6 @@ def check_valid_game_state(game_state):
 
 def check_valid_move(game_state, move):
     check_valid_game_state(game_state)
-    print(move)
     assert move in list(range(9))
 
 def check_value_set_for_win(check_value_set,player):
@@ -43,7 +42,6 @@ def check_win_lose(game_state,move,player):
     check_value_set = [game_state[2],game_state[4],game_state[6]]
     win_lose = new_win_lose(win_lose,check_value_set,player)
     return win_lose
-    print (win_lose)
 
 def move_is_on_open_space(game_state,move):
     return game_state[move]==2
@@ -62,6 +60,10 @@ def change_player(player):
     return(player)
 
 def next_game_state(game_state,move,player):
+    print("-----game-----")
+    print("gamestate recived by game: "+str(game_state))
+    print("move recived by game: "+str(move))
+    print("player recived by game: "+str(player))
     check_valid_move(game_state, move)
     next_player = player
     win_lose = LOSE
@@ -74,7 +76,7 @@ def next_game_state(game_state,move,player):
             win_lose = check_if_game_is_scrambled(next_state)
     if win_lose == CONT:
         next_player = change_player(player)
-        print (win_lose,next_state,next_player)
+    print("gamestate returned by game: "+str(next_state))
     return (win_lose, next_state, next_player)
 
 #initialize gives the gamestate,player,and win lose for at the begining of the game 
