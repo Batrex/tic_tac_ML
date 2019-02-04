@@ -74,9 +74,9 @@ def create_move_score_list(model,game_state):
 
 def order_moves(move_scores):
     return(sorted(move_scores, key=lambda move_scores: move_scores[1], reverse = True))
-    #this will sort the move 'mini lists' by their second item, the score  
+    #this will sort the move 'mini lists' by their second item, the score
 
-def chose_move(move_scores,verbose):
+def chose_move(move_scores):
     counter = 0
     while True:
         chance = random.random()
@@ -85,22 +85,20 @@ def chose_move(move_scores,verbose):
             if counter >= len(move_scores):
                 counter = 0
         else:
-            if verbose:
-                print("move_scores: "+str(move_scores))
-                print("----move calculated----")
-                print("move: "+str(move_scores[counter][0]))
+            print("move_scores: "+str(move_scores))
+            print("----move calculated----")
+            print("move: "+str(move_scores[counter][0]))
             return(move_scores[counter][0])
 
 
-def get_G1_move(game_state,player,game_histories,verbose):
-    model = load_model("model.sav") 
+def get_G1_move(game_state,player,game_histories):
+    model = load_model("model.sav")
     zeroed_gamestate = zero_player_in_games_state(game_state,player)
-    if verbose:
-        print("----calculating move----")
-        print("basic game_state after game_state zeroed"+str(game_state))
-        #this is making the player playing in the gamestate = to 0 and the opposition 0 
-        print("zeroed gamestate used by G1"+str(game_state))
-    move = chose_move(order_moves(create_move_score_list(model,zeroed_gamestate)),verbose)
-    #add the move to the game_histories might want to add this to the g1 instead later on 
+    print("----calculating move----")
+    print("basic game_state after game_state zeroed"+str(game_state))
+    #this is making the player playing in the gamestate = to 0 and the opposition 0
+    print("zeroed gamestate used by G1"+str(game_state))
+    move = chose_move(order_moves(create_move_score_list(model,zeroed_gamestate)))
+    #add the move to the game_histories might want to add this to the g1 instead later on
     game_histories[player].append([zeroed_gamestate,move])
     return(move)
