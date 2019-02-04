@@ -1,5 +1,4 @@
 #import os, sys
-
 WIN = 0
 LOSE = 1
 CONT = 2
@@ -60,10 +59,6 @@ def change_player(player):
     return(player)
 
 def next_game_state(game_state,move,player):
-    print("-----game-----")
-    print("gamestate recived by game: "+str(game_state))
-    print("move recived by game: "+str(move))
-    print("player recived by game: "+str(player))
     check_valid_move(game_state, move)
     next_player = player
     win_lose = LOSE
@@ -76,7 +71,6 @@ def next_game_state(game_state,move,player):
             win_lose = check_if_game_is_scrambled(next_state)
     if win_lose == CONT:
         next_player = change_player(player)
-    print("gamestate returned by game: "+str(next_state))
     return (win_lose, next_state, next_player)
 
 #initialize gives the gamestate,player,and win lose for at the begining of the game 
