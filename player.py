@@ -1,4 +1,8 @@
-#some functions to get the input of a move from the player 
+"""
+get the input from the player
+"""
+
+from log_import import log
 
 def create_display_game_state(game_state):
     display_game_state = [2,2,2,2,2,2,2,2,2]
@@ -21,7 +25,7 @@ def display_game_state(game_state):
              "| "+display_game_state[3]+" | "+display_game_state[4]+" | "+display_game_state[5]+" |\n" +\
              "| "+display_game_state[6]+" | "+display_game_state[7]+" | "+display_game_state[8]+" |\n" +\
              " ----------- \n"
-    print(console)
+    log.debug(console)
 
 
 def get_player_move(game_state,player):

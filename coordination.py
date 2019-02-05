@@ -1,9 +1,13 @@
-#this takes the output from the game and give it to the player, then take the output from the player
-#and give it to the game, and so forth.
+"""
+this takes the output from the game and give it to the player, then take the output from the player
+and give it to the game, and so forth.
+"""
 from G1 import get_G1_move,train,zero_player_in_games_state
 from game import next_game_state,initialise
 from game import WIN,LOSE,CONT,SCRAM
 from player import display_game_state,get_player_move
+from log_import import log
+
 G1 = 0
 human = 1
 
@@ -26,12 +30,12 @@ def playgame (player1_input,player2_input):
 
 	#display the game start output
 
-	print("--------------game start--------------")
+	log.debug("--------------game start--------------")
 	display_game_state(game_state)
 	while win_lose == CONT:
 
-		print("----next turn----")
-		print("player: "+str(player))
+		log.debug("----next turn----")
+		log.debug("player: "+str(player))
 		#get the move
 		if player_type == G1:
 			move = get_G1_move(game_state,player,game_histories)
@@ -48,9 +52,9 @@ def playgame (player1_input,player2_input):
 
 		#if a player one say that
 		if win_lose == WIN:
-			print ("player: "+ str(player)+" has one the game")
+			log.debug ("player: "+ str(player)+" has one the game")
 		elif win_lose ==  LOSE:
-			print ("player: "+ str(player)+" has lost the game")
+			log.debug ("player: "+ str(player)+" has lost the game")
 			player = 1 if player == 0 else 0
 		#train the G1 model
 		train(player,game_histories,"model.sav")

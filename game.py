@@ -1,4 +1,8 @@
 #import os, sys
+"""
+the game
+"""
+
 WIN = 0
 LOSE = 1
 CONT = 2
@@ -73,9 +77,7 @@ def next_game_state(game_state,move,player):
         next_player = change_player(player)
     return (win_lose, next_state, next_player)
 
-#initialize gives the gamestate,player,and win lose for at the begining of the game 
+#initialize gives the gamestate,player,and win lose for at the begining of the game
 
 def initialise():
     return ([2,2,2,2,2,2,2,2,2],0,CONT)
-
-

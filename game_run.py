@@ -1,11 +1,10 @@
-import logging
-log = logging.getLogger(__name__)
-
-
-#use this file to actually run anything that is needed to be run
-
-logging.basicConfig(level=logging.INFO)
 from coordination import playgame,G1,human
-for i  in range(1):
+from log_import import log
+
+"""
+use this file to actually run anything that is needed to be run
+"""
+
+for i  in range(100000):
 	log.info("----game: "+str(i)+"-----")
-	playgame(G1,human)
+	playgame(G1,G1)
