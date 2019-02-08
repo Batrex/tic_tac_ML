@@ -23,15 +23,13 @@ def playgame (player1_input,player2_input):
 	game_histories = [[],[]]
 	'''
 	the difference between player and currrent player is:
-	player_type stores whether the player is a Ai (ie G1) or a human
+	player_type stores whether the player is G1 or a human
 	player stores either 0 or 1 this is because the game script needs
 	to know whether this is the first or second player playing
 	'''
 
 	#display the game start output
-
 	log.debug("--------------game start--------------")
-	display_game_state(game_state)
 	while win_lose == CONT:
 
 		log.debug("----next turn----")
@@ -46,11 +44,7 @@ def playgame (player1_input,player2_input):
 		win_lose,game_state,player = next_game_state(game_state,move,player)
 		player_type = player1 if player_type==player2 else player2
 
-		#display the gamestate
-
-		display_game_state(game_state)
-
-		#if a player one say that
+		#if a player won say that
 		if win_lose == WIN:
 			log.debug ("player: "+ str(player)+" has one the game")
 		elif win_lose ==  LOSE:

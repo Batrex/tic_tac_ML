@@ -25,10 +25,11 @@ def display_game_state(game_state):
              "| "+display_game_state[3]+" | "+display_game_state[4]+" | "+display_game_state[5]+" |\n" +\
              "| "+display_game_state[6]+" | "+display_game_state[7]+" | "+display_game_state[8]+" |\n" +\
              " ----------- \n"
-    log.debug(console)
+    print(console)
 
 
 def get_player_move(game_state,player):
+    display_game_state(game_state)
     next_move = input('what is your move}-')
     if next_move not in ('0','1','2','3','4','5','6','7','8','9'):
         while next_move not in ('0','1','2','3','4','5','6','7','8','9'):

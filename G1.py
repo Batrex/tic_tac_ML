@@ -68,7 +68,7 @@ def create_move_score_list(model,game_state):
     move_scores_raw = model[tuple(game_state)] #get the moves and scores for this game state
     move_scores = []
     for i in range(9):
-        move_scores.append([i,(move_scores_raw[i][0])-(move_scores_raw[i][1]/2)])
+        move_scores.append([i,(move_scores_raw[i][0])-(move_scores_raw[i][1])])
     return(move_scores)
 
 def order_moves(move_scores):
@@ -93,7 +93,6 @@ def chose_move(move_scores):
 def get_G1_move(game_state,player,game_histories):
     model = load_model("model.sav")
     zeroed_gamestate = zero_player_in_games_state(game_state,player)
-    log.debug("----calculating move----")
     log.debug("basic game_state after game_state zeroed"+str(game_state))
     #this is making the player playing in the gamestate = to 0 and the opposition 0
     log.debug("zeroed gamestate used by G1"+str(game_state))
