@@ -14,7 +14,7 @@ human = 1
 
 
 
-def playgame (player1_input,player2_input):
+def playgame (player1_input,player2_input,model):
 	player1 = player1_input
 	player2 = player2_input
 	player_type = player1
@@ -36,7 +36,7 @@ def playgame (player1_input,player2_input):
 		log.debug("player: "+str(player))
 		#get the move
 		if player_type == G1:
-			move = get_G1_move(game_state,player,game_histories)
+			move = get_G1_move(game_state,player,game_histories,model)
 		elif player_type == human:
 			move = get_player_move(game_state,player)
 
@@ -51,4 +51,5 @@ def playgame (player1_input,player2_input):
 			log.debug ("player: "+ str(player)+" has lost the game")
 			player = 1 if player == 0 else 0
 		#train the G1 model
-		train(player,game_histories,"model.sav")
+		model = train(player,game_histories,model)
+	return(model)

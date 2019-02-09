@@ -23,7 +23,6 @@ def _dict_to_defaultdict(model_dict):
     return model
 
 def save_model(model,filename):
-    #log.debug("saving  - "+str(model)+" - to disk with the filename: "+filename+" -")
     pickle.dump(_defaultdict_to_dict(model), open(filename,'wb'))
 
 def load_model(filename):
@@ -48,9 +47,7 @@ def add_moves_to_model(win_lose,player_moves,model):
         model[tuple(game_state)][move][win_lose] += 1
 
 
-def train(winning_player,game_histories,model_name):
-    #load the model
-    model = load_model(str(model_name))
+def train(winning_player,game_histories,model):
     #for the winning_player
     winning_player_moves = game_histories[winning_player]
     add_moves_to_model(WIN,winning_player_moves,model)
@@ -58,9 +55,8 @@ def train(winning_player,game_histories,model_name):
     losing_player = 1 if winning_player == 0 else 0
     losing_player_moves = game_histories[losing_player]
     add_moves_to_model(LOSE,losing_player_moves,model)
-    #save the model
-    savable_model = _defaultdict_to_dict(model)
-    save_model(savable_model,str(model_name))
+    #return the model
+    return(model)
 
 ##--- chose the move ---##
 
@@ -90,8 +86,7 @@ def chose_move(move_scores):
             return(move_scores[counter][0])
 
 
-def get_G1_move(game_state,player,game_histories):
-    model = load_model("model.sav")
+def get_G1_move(game_state,player,game_histories,model):
     zeroed_gamestate = zero_player_in_games_state(game_state,player)
     log.debug("basic game_state after game_state zeroed"+str(game_state))
     #this is making the player playing in the gamestate = to 0 and the opposition 0
